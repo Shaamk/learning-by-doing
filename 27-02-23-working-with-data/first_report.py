@@ -10,10 +10,8 @@ from movie_data import movies
 def main():
     total = total_movies()
     average_rating(total)
-    highest_rating = best_rating()
-    lowest_rating = worst_rating()
-    best_movie(highest_rating)
-    worst_movie(lowest_rating)
+    best_movie()
+    worst_movie()
     
     
 def total_movies():
@@ -49,14 +47,16 @@ def worst_rating():
     return lowest_rating            
 
 
-def best_movie(highest_rating):
+def best_movie():
+    highest_rating = best_rating()
     for movie in movies:
         if highest_rating == movie["rating"]:
             best = movie["title"]
             print(f"Best movie: {best}")
 
 
-def worst_movie(lowest_rating):
+def worst_movie():
+    lowest_rating = worst_rating()
     for movie in movies:
         if lowest_rating == movie["rating"]:
             worst = movie["title"]
