@@ -9,15 +9,16 @@ def main():
     
 
 def getting_the_text_data():
-    with open('20-03-23-working-with-files/movie_data.txt', 'rt') as get_the_movies:
+    with open('03-working-with-files/movie_data.txt', 'rt') as get_the_movies:
         data = get_the_movies.read()
+        print(data)
         return data
-        #print(movies.read())
 
 
 def storing(data):
     movies_list = []
     movies_list = data.splitlines()             # list
+    print(f'splt lines: \n{movies_list}')
     movies_edit_list = list(movies_list)
     return movies_list, movies_edit_list
     # big list, ready to make a list of dict
@@ -34,7 +35,7 @@ def database(movies_list):
             movie["genre"] = movies_list.pop(0)
             movie["rating"] = movies_list.pop(0)        
             the_final_movies_list.append(movie)
-    print(the_final_movies_list)
+    print(f'dictionary in list: \n{the_final_movies_list}')
     return the_final_movies_list    # dict in list:    voor updaten : "the_new_movies_list" gaat ook naar "the_final_movies_list"
     # list with dictionaries: 
 
@@ -56,7 +57,7 @@ def options_to_choose(the_final_movies_list, movies_edit_list):
             updated_movies_list = adding_to_database(movies_edit_list)
             the_final_movies_list = update_database(updated_movies_list)    # here's the trick, in returning!
         elif option == "5":
-            printing_the_new_database(updated_movies_list)
+            printing_the_new_database(the_final_movies_list)
         elif option == "6":
             print("End of program")
             show_menu = False
@@ -122,11 +123,14 @@ def update_database(updated_movies_list):
     return updated_final_movies_list
 
 
-def printing_the_new_database(updated_movies_list):
-    with open('20-03-23-working-with-files/new_movie_data.txt', 'w') as start_writing:
-        for movies in updated_movies_list:
-            start_writing.write(movies)
-            start_writing.write('\n')
+def printing_the_new_database(the_final_movies_list):
+    print_the_final_movies_list = []
+    print_the_final_movies_list = the_final_movies_list.splitlines()
+    print(print_the_final_movies_list)
+    # with open('03-working-with-files/new_movie_data.txt', 'w') as start_writing:
+    #     for movies in print_the_final_movies_list:
+    #         start_writing.write(movies)
+    #         start_writing.write('\n')
 
 
 

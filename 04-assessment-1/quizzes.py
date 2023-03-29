@@ -5,8 +5,6 @@
 # shows high score
 
 
-
-
 import random
 
 def main():
@@ -47,6 +45,8 @@ def start_quiz(quiz_data):
     for answers in range(len(the_answers_list)):
         print(answers)
     print(the_answers_list)
+
+    # I'm trying to.. dont know how to make the print look like as the example
 
 
     

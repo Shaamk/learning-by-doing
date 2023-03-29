@@ -8,7 +8,7 @@ def main():
     
 
 def getting_the_text_data():
-    with open('20-03-23-working-with-files/movie_data.txt', 'rt') as get_the_movies:
+    with open('03-working-with-files/movie_data.txt', 'rt') as get_the_movies:
         data = get_the_movies.read()
         return data
         #print(movies.read())
@@ -115,7 +115,7 @@ def update_database(updated_movies_list):
     
 
 def printing_the_new_database(the_new_movies_list):
-    with open('20-03-23-working-with-files/new_movie_data.txt', 'w') as start_writing:
+    with open('03-working-with-files/new_movie_data.txt', 'w') as start_writing:
         for movies in the_new_movies_list:
             start_writing.write(movies)
             start_writing.write('\n')
