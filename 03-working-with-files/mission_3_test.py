@@ -124,14 +124,12 @@ def update_database(updated_movies_list):
 
 
 def printing_the_new_database(the_final_movies_list):
-    print_the_final_movies_list = []
-    print_the_final_movies_list = the_final_movies_list.splitlines()
-    print(print_the_final_movies_list)
-    # with open('03-working-with-files/new_movie_data.txt', 'w') as start_writing:
-    #     for movies in print_the_final_movies_list:
-    #         start_writing.write(movies)
-    #         start_writing.write('\n')
-
+    with open('03-working-with-files/new_movie_data.txt', 'w') as start_writing:
+        for movies in the_final_movies_list:
+            for data in movies:
+                #print(movies[data])
+                start_writing.write(movies[data])
+                start_writing.write('\n')
 
 
 if __name__ == '__main__':
