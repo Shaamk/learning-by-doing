@@ -1,17 +1,17 @@
-# 5 ramdom choices of the quizz
-# shows the answers randomly
-# stores 5 times if correct for the scoreboard
-# stops after 5 quistions
-# shows high score
+# 5 ramdom choices of the quizz             = working
+# shows answers shuffeled                   = working
+# stops after 5 quistions                   = working
+# shows high score                          = doing
+# stores count for 5 times at scoreboard    = 
 
 
 import random
 
+
 def main():
     game_data = getting_the_text()
     quiz_data = saving_as_data(game_data)
-    start_quiz( quiz_data)
-
+    start_game(quiz_data)    
 
 
 def getting_the_text():
@@ -34,29 +34,95 @@ def saving_as_data(game_data):
             quiz["answers"] = game_data.pop(0)
             quiz["correct"] = game_data.pop(0)
             quiz_data.append(quiz)
-    return random.choice(quiz_data)
+    return quiz_data
 
 
-def start_quiz(quiz_data):
-    the_question = quiz_data["question"]
-    keys = ["answers"]
-    the_answers_list = [quiz_data["answers"] for key in keys if key in quiz_data]
-    print(the_question)
-    for answers in range(len(the_answers_list)):
-        print(answers)
-    print(the_answers_list)
-
-    # I'm trying to.. dont know how to make the print look like as the example
+def start_game(quiz_data):
+    score = 0
+    game = 5
+    while game > 0:
+        score = go_quiz(quiz_data, score)
+        game -= 1
+    save_player_score(score)
+        
 
 
+def go_quiz(quiz_data, score):
+    quiz_set = random.choice(quiz_data)
+    correct_answer = quiz_set["correct"]
+    question = quiz_set["question"]        
+    answers = quiz_set["answers"]
+    answers_list = answers.split(", ")
+    random.shuffle(answers_list)
+    abcd = ['A.', 'B.', 'C.', 'D.']
+
+    print(correct_answer)
+    print(question)
+    for x, y in zip(abcd, answers_list):
+        print(x, y)
+    option = input("Your answer: ")
+    if option == "A":
+        if answers_list[0] == correct_answer:
+            score += 1
+            print("Good guess !")
+        else:
+            print("incorrect !")
+    elif option == "B":
+        if answers_list[1] == correct_answer:
+            score += 1
+            print("Good guess !")
+        else:
+            print("incorrect !")
+    elif option == "C":
+        if answers_list[2] == correct_answer:
+            score += 1
+            print("Good guess !")
+        else:
+            print("incorrect !")
+    elif option == "D":
+        if answers_list[3] == correct_answer:
+            score += 1
+            print("Good guess !")
+        else:
+            print("incorrect !")
     
+    print(f'Your score: {score}')
+    print()
+    return score
 
 
-def player_score():
+def save_player_score(score):
+    print(f'Final score: {score}')
+    high_score = []
+    player_score = {}
+    player_score["name"] = input("You set the high score! What is your name?: ")
+    player_score["score"] = input(high_score)
+    high_score.append(player_score)     # have to work on this
+    print(high_score)
+    return high_score
+
+
+def getting_the_score():
     pass
 
 
+def saving_score_to_file():
+    pass
 
 
 if __name__ == "__main__":
     main()
+
+
+
+
+# Which of the following words describes cats?
+# A. Caprine
+# B. Feline
+# C. Bovine
+# D. Canine
+# Your guess? > d
+# Incorrect!
+# Final score: 3
+# You set the high score! What is your name? > Shaam
+
