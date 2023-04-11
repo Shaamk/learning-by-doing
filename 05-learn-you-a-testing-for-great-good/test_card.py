@@ -1,6 +1,7 @@
 import pytest
 from card import parse_card
 
+
 def test_parse_card_returns_dictionary():
     result = parse_card('5H')
     assert isinstance(result, dict)
@@ -40,3 +41,13 @@ def test_KC_has_description():
 def test_10D_has_rank():
     result = parse_card('10D')
     assert result["rank"] == '10'
+
+def test_10D_has_suit_D():
+    result = parse_card('10D')
+    assert result["suit"] == 'diamonds'
+    
+
+# def test_wrong_input():
+#     with pytest.raises(ValueError):
+#         result = parse_card(None,)
+#         assert result == ''

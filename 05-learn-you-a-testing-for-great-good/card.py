@@ -2,12 +2,14 @@ def parse_card(card):
     card_dict = {}
     if card[0] == 'A':
         card_dict["rank"] = "ace"
-    elif card[0] == 'J':
-        card_dict["rank"] = "jack"        
+    elif card[0] == 'K':
+        card_dict["rank"] = "king"
     elif card[0] == 'Q':
         card_dict["rank"] = "queen"        
-    elif card[0] == 'K':
-        card_dict["rank"] = "king"        
+    elif card[0] == 'J':
+        card_dict["rank"] = "jack"
+    elif card[0] == '1':
+        card_dict["rank"] = "10"
     else:
         card_dict["rank"] = card[0]
         
@@ -47,7 +49,7 @@ def parse_card(card):
     elif card[0] == '3':
         card_dict["description"] = "a three"        
     elif card[0] == '2':
-        card_dict["description"] = "a twoo" 
+        card_dict["description"] = "a two" 
 
 
     if card[1] == 'C':
@@ -61,6 +63,7 @@ def parse_card(card):
     
     # ranks_list = ['a two ', 'a three ', 'a four ', 'a five ', 'a six ', 'a seven ', 'an eight ', 'a nine ', 'a ten ']
     
-
+    # if not isinstance(card):
+    #     raise ValueError('Oh my God, what happend!')
 
     return card_dict
