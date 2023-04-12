@@ -1,6 +1,8 @@
 def parse_card(card):
     card_dict = {}
-    if card[0] == 'A':
+    if not type(card) == str:
+        raise ValueError("It worked")
+    elif card[0] == 'A':
         card_dict["rank"] = "ace"
     elif card[0] == 'K':
         card_dict["rank"] = "king"
@@ -22,7 +24,9 @@ def parse_card(card):
         card_dict["suit"] = "hearts"    
     elif card[1] == 'S':
         card_dict["suit"] = "spades"
-        
+    else:
+        raise ValueError()
+
 
     if card[0] == 'A':
         card_dict["description"] = "an ace"
@@ -61,9 +65,13 @@ def parse_card(card):
     elif card[1] == 'S':
         card_dict["description"] += " of spades"  
     
-    # ranks_list = ['a two ', 'a three ', 'a four ', 'a five ', 'a six ', 'a seven ', 'an eight ', 'a nine ', 'a ten ']
-    
-    # if not isinstance(card):
-    #     raise ValueError('Oh my God, what happend!')
 
     return card_dict
+
+
+# def te_errors(card):
+#     try:
+#         parse_card(card)
+#     except (TypeError, IndexError, KeyError) as exp:
+#         print("All other Errors", exp)
+#         raise ValueError("raised a valueError")

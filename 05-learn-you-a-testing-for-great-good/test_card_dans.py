@@ -102,6 +102,6 @@ def test_parse_card_parses_suit(shorthand, expected_suit):
 
 description_tests = [(get_shorthand(r, s), description_for_card(r, s)) for r, s in product(ranks,suits)]
 @pytest.mark.parametrize('shorthand, expected_description', description_tests)
-def test_parse_card_description_basics(shorthand, expected_description):
+def test_parse_card_description_basics_again(shorthand, expected_description):
     assert parse_card(shorthand)['description'] == expected_description
 
