@@ -14,6 +14,7 @@ from card import parse_card
     '13H',
     '4P',
     '11DD',
+    '4BSD',
     '1D',
     '3HD',
     'CO',

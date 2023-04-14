@@ -1,8 +1,8 @@
 # 5 ramdom choices of the quizz             = working
 # shows answers shuffeled                   = working
 # stops after 5 quistions                   = working
-# shows high score                          = doing
-# stores count for 5 times at scoreboard    = 
+# shows high score                          = working
+# stores count for 5 times at scoreboard    = working
 
 
 import random
@@ -18,10 +18,8 @@ def getting_the_text():
     game_data = []
     with open('04-assessment-1/questions.txt', 'rt') as get_text:
         all_questions = get_text.read()
-        #print(questions)
         game_data = all_questions.splitlines()
         del game_data[-1]
-        #print(game_data)
         return game_data
 
 
@@ -43,8 +41,7 @@ def start_game(quiz_data):
     while game > 0:
         score = go_quiz(quiz_data, score)
         game -= 1
-    save_player_score(score)
-        
+    score = save_player_score(score)        
 
 
 def go_quiz(quiz_data, score):
@@ -61,28 +58,29 @@ def go_quiz(quiz_data, score):
     for x, y in zip(abcd, answers_list):
         print(x, y)
     option = input("Your answer: ")
+    option = option.upper()
     if option == "A":
         if answers_list[0] == correct_answer:
             score += 1
-            print("Good guess !")
+            print("Goooood guess !")
         else:
             print("incorrect !")
     elif option == "B":
         if answers_list[1] == correct_answer:
             score += 1
-            print("Good guess !")
+            print("Goooood guess !")
         else:
             print("incorrect !")
     elif option == "C":
         if answers_list[2] == correct_answer:
             score += 1
-            print("Good guess !")
+            print("Goooood guess !")
         else:
             print("incorrect !")
     elif option == "D":
         if answers_list[3] == correct_answer:
             score += 1
-            print("Good guess !")
+            print("Goooood guess !")
         else:
             print("incorrect !")
     
@@ -93,22 +91,16 @@ def go_quiz(quiz_data, score):
 
 def save_player_score(score):
     print(f'Final score: {score}')
-    high_score = []
-    player_score = {}
-    player_score["name"] = input("You set the high score! What is your name?: ")
-    player_score["score"] = input(high_score)
-    high_score.append(player_score)     # have to work on this
-    print(high_score)
-    return high_score
+    player_score = []
+    new_score = {}
+    new_score["name"] = input("You set the high score! What is your name?: ")
+    new_score["score"] = score
+    player_score.append(player_score)
+    for player in player_score:
+        print(f'{player["name"]} {player["score"]}')
+    return player_score
 
-
-def getting_the_score():
-    pass
-
-
-def saving_score_to_file():
-    pass
-
+    
 
 if __name__ == "__main__":
     main()
