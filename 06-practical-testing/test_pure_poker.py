@@ -28,3 +28,10 @@ def test_too_much_characters():
     result = get_description_for_poker_hand("10C 10D 10H 10S 10C")
     assert result == "Sorry, that's invalid"
 
+def test_invalid_card():
+    result = get_description_for_poker_hand("10C 10D 10H 10S 8X")
+    assert result == "Sorry, that's invalid"
+
+def test_high_card():
+    result = get_description_for_poker_hand("AS 10S 5H 7C 6S")
+    assert result == "High card"

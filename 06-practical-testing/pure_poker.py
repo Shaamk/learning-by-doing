@@ -5,6 +5,15 @@ def get_description_for_poker_hand(user_data):
         return "Sorry, that's invalid"
     elif len(user_data) < 14 or len(user_data) > 18:
         return "Sorry, that's invalid"
+    elif len(user_data) > 14 or len(user_data) < 18:
+        cards = user_data.split()
+        for card in cards:
+            try:
+                parse_card(card)
+            except ValueError:
+                return "Sorry, that's invalid"
+    
+        
 
 
 def parse_card(card):
