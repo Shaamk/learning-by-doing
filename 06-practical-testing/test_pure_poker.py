@@ -35,3 +35,7 @@ def test_invalid_card():
 def test_high_card():
     result = get_description_for_poker_hand("AS 10S 5H 7C 6S")
     assert result == "High card"
+
+def test_one_pair():
+    result = get_description_for_poker_hand("AS 10S 5H 10C 6S")
+    assert result == "One pair"

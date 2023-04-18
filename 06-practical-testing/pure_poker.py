@@ -10,9 +10,12 @@ def get_description_for_poker_hand(user_data):
         for card in cards:
             try:
                 parse_card(card)
+                if card[0] == 'A':
+                    return "High card"
+                
             except ValueError:
                 return "Sorry, that's invalid"
-    
+
         
 
 
