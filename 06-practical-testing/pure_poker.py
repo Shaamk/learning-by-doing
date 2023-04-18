@@ -7,17 +7,23 @@ def get_description_for_poker_hand(user_data):
         return "Sorry, that's invalid"
     elif len(user_data) > 14 or len(user_data) < 18:
         cards = user_data.split()
+        parsed_cards = []
         for card in cards:
             try:
-                parse_card(card)
-                if card[0] == 'A':
-                    return "High card"
-                
+                parsed_cards.append(parse_card(card))
             except ValueError:
                 return "Sorry, that's invalid"
-
+        for parsed_card in parsed_cards:
+            if parsed_card["rank"] == "A":
+                return "High card"       
+            # elif parsed_card["rank"]in parsed_cards:
+            #     return "One pair"
+            #### going to make a counting function: 
+            #### I had to think for a moment what you meant by counting ;)
         
-
+def the_counting():
+    pass
+        
 
 def parse_card(card):
     card_dict = {}
@@ -36,13 +42,13 @@ def parse_card(card):
 
     if len(card) == 2:
         if card[0] == 'A':
-            card_dict["rank"] = "ace"
+            card_dict["rank"] = "A"
         elif card[0] == 'K':
-            card_dict["rank"] = "king"
+            card_dict["rank"] = "K"
         elif card[0] == 'Q':
-            card_dict["rank"] = "queen"        
+            card_dict["rank"] = "Q"        
         elif card[0] == 'J':
-            card_dict["rank"] = "jack"
+            card_dict["rank"] = "J"
         elif card[0] == '9':
             card_dict["rank"] = "9"
         elif card[0] == '8':
