@@ -1,3 +1,5 @@
+from card import parse_card
+
 def get_description_for_poker_hand(user_data):
     if user_data == None:
         return "Sorry, that's invalid"
@@ -8,133 +10,89 @@ def get_description_for_poker_hand(user_data):
     elif len(user_data) > 14 or len(user_data) < 18:
         cards = user_data.split()
         parsed_cards = []
+        parsed_cards_ranks = []
+        parsed_cards_suits = []
         for card in cards:
             try:
+                #card = parse_card(card)
                 parsed_cards.append(parse_card(card))
+            
             except ValueError:
                 return "Sorry, that's invalid"
-        for parsed_card in parsed_cards:
-            if parsed_card["rank"] == "A":
-                return "High card"       
-            # elif parsed_card["rank"]in parsed_cards:
-            #     return "One pair"
-            #### going to make a counting function: 
-            #### I had to think for a moment what you meant by counting ;)
-        
-def the_counting():
-    pass
-        
+            ranks_list = for_counting_ranks(parsed_cards)
+            
+            
+            # parsed_cards_ranks.append(parse_card["rank"])
+            # parsed_cards_suits.append(parse_card["suit"])
+            # ranks_list = for_counting_ranks(parsed_cards_ranks)
+            # parsed_cards_suits = for_counting_suits(parsed_cards_suits)
 
-def parse_card(card):
-    card_dict = {}
-    if type(card) != str or len(card) <1:
-        raise ValueError()
-    elif card == card.lower():
-        raise ValueError()    
-    elif len(card) < 2 or len(card)> 3:
-        raise ValueError()
-    elif len(card) == 3:
-        if card[:2] != "10":
-            raise ValueError()
-    elif len(card) == 2:
-        if card[:1] == "1":
-            raise ValueError()
+            if ranks_list == [1, 1, 1, 1, 1]:
+                return "High card"
+            elif ranks_list == [1, 1, 1, 2, 2]:
+                return "One pair"            
+            elif ranks_list == [1, 2, 2]:
+                return "Two pair"
+            elif ranks_list == [1, 1, 3]:
+                return "Three of a kind"
+            elif ranks_list == [1, 1, 1, 1, 1]:
+                return "Straight"
 
-    if len(card) == 2:
-        if card[0] == 'A':
-            card_dict["rank"] = "A"
-        elif card[0] == 'K':
-            card_dict["rank"] = "K"
-        elif card[0] == 'Q':
-            card_dict["rank"] = "Q"        
-        elif card[0] == 'J':
-            card_dict["rank"] = "J"
-        elif card[0] == '9':
-            card_dict["rank"] = "9"
-        elif card[0] == '8':
-            card_dict["rank"] = "8"
-        elif card[0] == '7':
-            card_dict["rank"] = "7"
-        elif card[0] == '6':
-            card_dict["rank"] = "6"
-        elif card[0] == '5':
-            card_dict["rank"] = "5"
-        elif card[0] == '4':
-            card_dict["rank"] = "4"
-        elif card[0] == '3':
-            card_dict["rank"] = "3"
-        elif card[0] == '2':
-            card_dict["rank"] = "2"
+            # if len(parsed_cards_ranks) == 5:
+            #     return "High card"
+            # elif len(parsed_cards_ranks) == 4:
+            #     return "One pair"            
+            # elif len(parsed_cards_ranks) == 3:
+            #     return "Two pair"
+            #print(parsed_cards) # list met dictionaries
+            #print(ranks_list)
 
-        if card[1] == 'C':
-            card_dict["suit"] = "clubs"
-        elif card[1] == 'D':
-            card_dict["suit"] = "diamonds"
-        elif card[1] == 'H':
-            card_dict["suit"] = "hearts"    
-        elif card[1] == 'S':
-            card_dict["suit"] = "spades"
+
+def for_counting_ranks(parsed_cards):
+    ranks_list = []
+    counting_ranks = {}
+    for card in parsed_cards:
+        ranks = card["rank"]
+        for card in ranks:
+            if card not in counting_ranks:
+                counting_ranks[card] = 1
+            else:
+                counting_ranks[card] += 1
+    #print(counting_ranks)
+    for numbers in counting_ranks:
+        ranks_list.append(counting_ranks[numbers])
+    ranks_list.sort()
+    print(ranks_list)
+    return ranks_list
+
+# def for_counting_ranks(parsed_cards):
+#     counting_ranks = {}
+#     ranks_list = []
+#     for card in parsed_cards:
+#         if card not in counting_ranks:
+#             counting_ranks[card] = 1
+#         else:
+#             counting_ranks[card] += 1
+#     print(counting_ranks)
+#     for numbers in counting_ranks:
+#         ranks_list.append(counting_ranks[numbers])
+
+#     print(ranks_list)
+#     return ranks_list
+
+
+def for_counting_suits(parsed_cards_suits):
+    counting_suits = {}
+    suits_list = []
+    for card in parsed_cards_suits:
+        if card not in counting_suits:
+            counting_suits[card] = 1
         else:
-            raise ValueError()
-        if card[0] == 'A':
-            card_dict["description"] = "an ace"
-        elif card[0] == 'K':
-            card_dict["description"] = "a king"        
-        elif card[0] == 'Q':
-            card_dict["description"] = "a queen"        
-        elif card[0] == 'J':
-            card_dict["description"] = "a jack"       
-        elif card[0] == '9':
-            card_dict["description"] = "a nine"        
-        elif card[0] == '8':
-            card_dict["description"] = "an eight"
-        elif card[0] == '7':
-            card_dict["description"] = "a seven"        
-        elif card[0] == '6':
-            card_dict["description"] = "a six"        
-        elif card[0] == '5':
-            card_dict["description"] = "a five"
-        elif card[0] == '4':
-            card_dict["description"] = "a four"        
-        elif card[0] == '3':
-            card_dict["description"] = "a three"        
-        elif card[0] == '2':
-            card_dict["description"] = "a two"
-        else:
-            raise ValueError()
+            counting_suits[card] += 1
+    print(counting_suits)
+    for numbers in counting_suits:
+        suits_list.append(counting_suits[numbers])
 
-        if card[1] == 'C':
-            card_dict["description"] += " of clubs"
-        elif card[1] == 'D':
-            card_dict["description"] += " of diamonds"        
-        elif card[1] == 'H':
-            card_dict["description"] += " of hearts"        
-        elif card[1] == 'S':
-            card_dict["description"] += " of spades"
+    print(suits_list)
+    return suits_list
 
-        
-    elif len(card) == 3:
-        if card[:2] == "10":
-            card_dict["rank"] = "10"
-            card_dict["description"] = "a ten"
-        if card[2] == 'C':
-            card_dict["suit"] = "clubs"
-        elif card[2] == 'D':
-            card_dict["suit"] = "diamonds"
-        elif card[2] == 'H':
-            card_dict["suit"] = "hearts"    
-        elif card[2] == 'S':
-            card_dict["suit"] = "spades"    
-        if card[2] == 'C':
-            card_dict["description"] += " of clubs"
-        elif card[2] == 'D':
-            card_dict["description"] += " of diamonds"        
-        elif card[2] == 'H':
-            card_dict["description"] += " of hearts"        
-        elif card[2] == 'S':
-            card_dict["description"] += " of spades"
-        else:
-            raise ValueError()
-
-
-    return card_dict

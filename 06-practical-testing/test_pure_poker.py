@@ -39,3 +39,19 @@ def test_high_card():
 def test_one_pair():
     result = get_description_for_poker_hand("AS 10S 5H 10C 6S")
     assert result == "One pair"
+
+def test_two_pair():
+    result = get_description_for_poker_hand("3H 8C 8H 9S 3D")
+    assert result == "Two pair"
+
+def test_three_of_a_kind():
+    result = get_description_for_poker_hand("6S 6H 7C JD 6D")
+    assert result == "Three of a kind"
+
+def test_straight():
+    result = get_description_for_poker_hand("2H 3C 4S 5H 6D")
+    assert result == "Straight"
+
+def test_one_more_straight():
+    result = get_description_for_poker_hand("JD 8C 10S 9S 7D")
+    assert result == "Straight"
