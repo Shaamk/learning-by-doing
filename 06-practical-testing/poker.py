@@ -2,7 +2,7 @@ from pure_poker import get_description_for_poker_hand
 
 def main():
 
-    user_data = input("What's your hand ?")
+    user_data = input("What's your hand? ")
     thing_to_print = get_description_for_poker_hand(user_data)
     print(thing_to_print)
 
