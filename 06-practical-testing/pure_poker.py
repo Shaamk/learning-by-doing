@@ -101,6 +101,7 @@ def for_a_royal_flush():
 
 def for_a_straight():
     straight_ranks = [
+        ['10', 'A', 'J', 'K', 'Q']
         ['10', '9', 'J', 'K', 'Q'],
         ['10', '8', '9', 'J', 'Q'],
         ['10', '7', '8', '9', 'J'],

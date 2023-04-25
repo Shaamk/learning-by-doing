@@ -27,10 +27,22 @@ def test_one_pair():
     compare_input_to_expected_result('7S 10H 7D 2C 4D', 'One Pair')
 
 def test_two_pair():
-    compare_input_to_expected_result('7S 10S JD 10H 7D' ,'Two Pair')
+    compare_input_to_expected_result('7S 10S JD 10H 7D', 'Two Pair')
 
 def test_three_of_a_kind():
     compare_input_to_expected_result('8S JH 8D KH 8C', 'Three of a Kind')
+
+def test_straight():
+    compare_input_to_expected_result('2H 3C 4S 5H 6D', 'Straight')
+
+def test_for_flush():
+    compare_input_to_expected_result('4H 8H 2H 9H 7H', 'Flush')
+
+def test_for_full_house():
+    compare_input_to_expected_result('4H 4D 4C 8S 8D', 'Full House')
+
+# def test_for_four_of_a_kind():
+#     compare_input_to_expected_result('JC JD JS JC 5H', 'Four Of A Kind')
 
 def compare_input_to_expected_result(data, poker_hand=INVALID_STRING):
     result = description_poker_hand(data)
