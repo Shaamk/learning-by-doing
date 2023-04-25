@@ -6,29 +6,32 @@ def test_find_function():
     assert description_poker_hand
 
 def test_invalid_input_empty_string():
-    helper_function('')
+    compare_input_to_expected_result('')
 
 def test_invalid_input_none():
-    helper_function(None)
+    compare_input_to_expected_result(None)
 
 def test_invalid_input_int():
-    helper_function(12)
+    compare_input_to_expected_result(12)
 
 def test_invalid_input_list():
-    helper_function([])
-
-def helper_function(data):
-    result = description_poker_hand(data)
-    assert result == INVALID_STRING
+    compare_input_to_expected_result([])
 
 def test_wrong_number_of_cards():
-    helper_function("AS")
+    compare_input_to_expected_result("AS")
 
 def test_valid():
-    result = description_poker_hand("AS 3C 5H 7D 8D")
-    assert result == 'High Card'
+    compare_input_to_expected_result("AS 3C 5H 7D 8D", 'High Card')
 
 def test_one_pair():
-    result = description_poker_hand("7S 10H 7D 2C 4D")
-    assert result == 'One Pair'
-    
+    compare_input_to_expected_result('7S 10H 7D 2C 4D', 'One Pair')
+
+def test_two_pair():
+    compare_input_to_expected_result('7S 10S JD 10H 7D' ,'Two Pair')
+
+def test_three_of_a_kind():
+    compare_input_to_expected_result('8S JH 8D KH 8C', 'Three of a Kind')
+
+def compare_input_to_expected_result(data, poker_hand=INVALID_STRING):
+    result = description_poker_hand(data)
+    assert result == poker_hand
