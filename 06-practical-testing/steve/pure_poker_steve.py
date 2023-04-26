@@ -24,7 +24,10 @@ def return_card_function(frequency_ranks, frequency_suits):
     number_of_ranks = len(frequency_ranks)
     number_of_suits = len(frequency_suits)
 
-    checks = ((check_for_full_house, 'Full House'),
+    checks = ((check_for_royal_flush, 'Royal Flush'),
+              (check_for_straight_flush, 'Straight Flush'),
+              (check_for_four_of_a_kind, 'Four Of A Kind'),
+              (check_for_full_house, 'Full House'),
               (check_for_flush, 'Flush'),
               (check_for_straight, 'Straight'),
               (check_for_three_of_a_kind, 'Three of a Kind'),
@@ -39,11 +42,25 @@ def return_card_function(frequency_ranks, frequency_suits):
 
     return return_card
 
-# def check_for_four_of_a_kind(number_of_ranks, frequency_ranks, number_suits, frequency_suits):
-#     return number_of_ranks == 2
+def check_for_royal_flush(number_of_ranks, frequency_ranks, number_of_suits, frequency_suits):
+    ranks = list(frequency_ranks.keys())
+    royal_flush = [['10', 'J', 'Q', 'K', 'A']]
+    for item in royal_flush:
+        if item == ranks and number_of_suits == 1:
+            return True
 
-def check_for_full_house(number_of_ranks, frequency_ranks, number_suits, frequency_suits):
-    return number_of_ranks == 2 and number_suits == 4
+def check_for_straight_flush(number_of_ranks, frequency_ranks, number_of_suits, frequency_suits):
+    ranks = list(frequency_ranks.keys())
+    straight = [['A', '2', '3', '4', '5'],['2', '3', '4', '5', '6'],['3', '4', '5', '6', '7'],['4', '5', '6', '7', '8'],['5', '6', '7', '8', '9'],['10', '6', '7', '8', '9'],['10', '7', '8', '9', 'J'],['10', '8', '9', 'J', 'Q'],['10', '9', 'J', 'Q', 'K'],['10', 'J', 'Q', 'K', 'A']]
+    for item in straight:
+        if item == ranks and number_of_suits == 1:
+            return True
+
+def check_for_four_of_a_kind(number_of_ranks, frequency_ranks, number_of_suits, frequency_suits):
+    return number_of_ranks == 2 and 4 in frequency_ranks.values()
+
+def check_for_full_house(number_of_ranks, frequency_ranks, number_of_suits, frequency_suits):
+    return number_of_ranks == 2 and 3 in frequency_ranks.values()
 
 def check_for_flush(number_of_ranks, frequency_ranks, number_of_suits, frequency_suits):
     return number_of_suits == 1

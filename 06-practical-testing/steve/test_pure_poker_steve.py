@@ -41,8 +41,14 @@ def test_for_flush():
 def test_for_full_house():
     compare_input_to_expected_result('4H 4D 4C 8S 8D', 'Full House')
 
-# def test_for_four_of_a_kind():
-#     compare_input_to_expected_result('JC JD JS JC 5H', 'Four Of A Kind')
+def test_for_four_of_a_kind():
+    compare_input_to_expected_result('JC JD JS JH 5H', 'Four Of A Kind')
+
+def test_for_straight_flush():
+    compare_input_to_expected_result('AC 2C 3C 4C 5C', 'Straight Flush')
+
+def test_for_royal_flush():
+    compare_input_to_expected_result('10S JS QS KS AS', 'Royal Flush')
 
 def compare_input_to_expected_result(data, poker_hand=INVALID_STRING):
     result = description_poker_hand(data)
