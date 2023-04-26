@@ -65,7 +65,7 @@ def test_full_house():
     assert result == "Full House"
 
 def test_four_of_a_kind():
-    result = get_description_for_poker_hand("JC JD JS JC 5H")
+    result = get_description_for_poker_hand("JC JD JS JH 5H")   # JC JD JS JC 5H = 2* JC
     assert result == "Four of a kind"
 
 def test_straight_flush():

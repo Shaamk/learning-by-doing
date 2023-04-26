@@ -4,8 +4,8 @@ def description_poker_hand(user_input):
     
     frequency_ranks = {}
     frequency_suits = {}
-    ranks_list = [i[:1] for i in user_input.split()]    # list with all ranks
-    suits_list = [i[1:2] for i in user_input.split()]   # list with all suits
+    ranks_list = [i[:-1] for i in user_input.split()]    # list with all ranks
+    suits_list = [i[-1:] for i in user_input.split()]   # list with all suits
 
     
     for rank in ranks_list:
@@ -46,7 +46,7 @@ def check_for_royal_flush(number_of_ranks, frequency_ranks, number_of_suits, fre
     ranks = list(frequency_ranks.keys())
     royal_flush = [['10', 'J', 'Q', 'K', 'A']]
     for item in royal_flush:
-        if item == ranks and number_of_suits == 1:
+        if item == ranks and 5 in frequency_suits.values():
             return True
 
 def check_for_straight_flush(number_of_ranks, frequency_ranks, number_of_suits, frequency_suits):
