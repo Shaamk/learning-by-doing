@@ -15,6 +15,19 @@ def check_for_palindrome(user_input):
         return 'Not a palindrome'
     return 'Palindrome'
 
+
+def is_palindrome(user_input):
+    invalid = check_for_invalid(user_input)
+    if invalid is not None:
+        message = invalid
+
+    else:
+        cleaned_string = clean_user_input(user_input)        
+        palindrome = check_for_palindrome(cleaned_string)
+        message = palindrome
+    return message
+
+
 # pass string, can not be empty
 # checking if there are numbers or letters
 # go through the string:

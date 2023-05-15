@@ -7,10 +7,9 @@ def main():
     invalid = check_for_invalid(user_input)
     if invalid is not None:
         print(invalid)
-    else:        
-    
+
+    else: # else did the trick NOT to continue! 
         cleaned_string = clean_user_input(user_input)
-        
         palindrome = check_for_palindrome(cleaned_string)
         print(palindrome)
 
