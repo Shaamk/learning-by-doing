@@ -17,6 +17,12 @@ def test_if_input_is_invalid_integer():
 def test_if_input_is_invalid_list():
     compare_input_to_expected_result([])
 
+def test_if_input_only_contains_comma():
+    compare_input_to_expected_result(',')
+
+def test_if_input_is_comma_and_letter():
+    compare_input_to_expected_result('a,', None)
+
 def test_if_input_clean_punctuation():
     result = clean_user_input('a:a')
     assert result == 'aa'
