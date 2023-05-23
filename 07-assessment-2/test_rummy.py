@@ -35,4 +35,10 @@ def test_invalid_input_potatopotato():
 
 
 def test_rummy_hand_AC_AS_5C_8C_6C_7C_AH():
-    the_expected_result('AC AS 5C 8C 6C 7C AH', 'WIN')
+    the_expected_result('AC AS 5C 8C 6C 7C AH', 'WIN')  # 3 ranks and straight 4
+
+# def test_rummy_hand_AH_2H_3H_4H_5H_6H_7H():
+#     the_expected_result('AH 2H 3H 4H 5H 6H 7H', 'WIN')
+
+# def test_rummy_hand_10H_9H_8H_7H_7C_7S_7D():
+#     the_expected_result('10H 9H 8H 7H 7C 7S 7D', 'WIN')
