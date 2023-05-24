@@ -12,6 +12,9 @@ def check_for_invalid(user_input):
     valid_ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
     if not isinstance(user_input, str) or user_input == '' or len(user_input.split()) != 7:
         return 'Sorry, that is invalid'
+    for valid in user_input.split():
+        if valid[-1] not in valid_suits:
+            return 'Sorry, that is invalid'
     
     
 
@@ -22,10 +25,12 @@ def get_rummy_hand(user_input):
     four_ranks = four_of_a_kind(ranks_count)
     straight_three = straight_of_three(suits_count, ranks_count)
     straight_four = straight_of_four(suits_count, ranks_count)
-    return three_ranks, four_ranks, straight_three, straight_four
+    output = check_for_winning_hand(three_ranks, four_ranks, straight_three, straight_four)
+    return output
+
 
 def check_for_winning_hand(three_ranks, four_ranks, straight_three, straight_four):
-    if three_ranks:
+    if three_ranks and straight_four:
         return 'WIN'
     else:
         return 'LOSE'
@@ -60,20 +65,18 @@ def four_of_a_kind(ranks_count):
 
 
 def straight_of_three(suits_count, ranks_count):
+    new_ranks_count = {k: v for k, v in ranks_count.items() if v == 1}
     ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-    given_ranks = sorted(ranks_count.keys())
+    ranks_sorted = sorted(new_ranks_count.keys())
     for three in range(11):
         makes_three = ranks[0 + three: 3 + three]
-        if given_ranks == makes_three and 3 in suits_count.values():
-            return True
+    return ranks_sorted == makes_three and suits_count.values() > 3
 
 
 def straight_of_four(suits_count, ranks_count):
+    new_ranks_count = {k: v for k, v in ranks_count.items() if v == 1}
     ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-    given_ranks = sorted(ranks_count.keys())
+    ranks_sorted = sorted(new_ranks_count.keys())
     for four in range(10):
         makes_four = ranks[0 + four: 4 + four]
-        if given_ranks == makes_four and 4 in suits_count.values():
-            return True
-    
-
+    return ranks_sorted == makes_four and suits_count.values() > 4
