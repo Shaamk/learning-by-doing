@@ -20,13 +20,13 @@ def check_for_invalid(user_input):
 
 def get_rummy_hand(user_input):
     ranks_count = get_ranks(user_input)
-    suits_count = get_suits(user_input)
     three_ranks = three_of_a_kind(ranks_count)
     four_ranks = four_of_a_kind(ranks_count)
-    ranks, suits_max, ranks_sorted = getting_the_straight(suits_count, ranks_count)
-    straight_three = straight_of_three(ranks, suits_max, ranks_sorted)
-    straight_four = straight_of_four(ranks, suits_max, ranks_sorted)
-    straight_seven = staight_with_three_and_four(ranks, suits_max, ranks_sorted)
+    ranks, ranks_sorted_straight_list, straight_list = getting_the_straight(ranks_count, user_input)
+    suits_max = get_suits(straight_list)
+    straight_three = straight_of_three(ranks, ranks_sorted_straight_list, suits_max)
+    straight_four = straight_of_four(ranks, ranks_sorted_straight_list, suits_max)
+    straight_seven = staight_with_three_and_four(ranks, ranks_sorted_straight_list, suits_max)
     output = check_for_winning_hand(three_ranks, four_ranks, straight_three, straight_four, straight_seven)
     return output
 
@@ -50,14 +50,15 @@ def get_ranks(user_input):
     return ranks_count
 
 
-def get_suits(user_input):
+def get_suits(straight_list):
     suits_count = {}
-    suits_list = [suit[-1:] for suit in user_input.split()]
+    suits_list = [suit[-1] for suit in straight_list]
     for suit in suits_list:
         if suit not in suits_count:
             suits_count[suit] = 0
         suits_count[suit] += 1
-    return suits_count
+    suits_max = max(suits_count.values())
+    return suits_max
 
 
 def three_of_a_kind(ranks_count):
@@ -68,30 +69,31 @@ def four_of_a_kind(ranks_count):
     return 4 in ranks_count.values()
 
 
-def getting_the_straight(suits_count, ranks_count):
+def getting_the_straight(ranks_count, user_input):
     ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-    straight_ranks = {k: v for k, v in ranks_count.items() if v == 1}
-    suits_max = max(suits_count.values())
-    ranks_sorted = sorted(straight_ranks.keys())
-    return ranks, suits_max, ranks_sorted
+    straight_ranks = {k: v for k, v in ranks_count.items() if v == 1}   # if all the values = 1 , then its good for a straight 7
+    ranks_sorted_straight_list = sorted(straight_ranks.keys())
+    unwanted_string = max(ranks_count, key=ranks_count.get)  # getting the key with the maximum value
+    straight_list = sorted([x for x in user_input.split() if unwanted_string not in x]) # make a new list for the sraight
+    return ranks, ranks_sorted_straight_list, straight_list
 
 
-def straight_of_three(ranks, suits_max, ranks_sorted ):
+def straight_of_three(ranks, ranks_sorted_straight_list, suits_max):
     for three in range(11):
         makes_three = sorted(ranks[0 + three: 3 + three])
-        if ranks_sorted == makes_three and suits_max > 1:
+        if ranks_sorted_straight_list == makes_three and suits_max == 3:
             return True
 
 
-def straight_of_four(ranks, suits_max, ranks_sorted):
+def straight_of_four(ranks, ranks_sorted_straight_list, suits_max):
     for four in range(10):
         makes_four = sorted(ranks[0 + four: 4 + four])
-        if ranks_sorted == makes_four and suits_max > 1:
+        if ranks_sorted_straight_list == makes_four and suits_max == 4:
             return True
 
 
-def staight_with_three_and_four(ranks, suits_max, ranks_sorted):
+def staight_with_three_and_four(ranks, ranks_sorted_straight_list, suits_max):
     for seven in range(7):
         makes_seven = sorted(ranks[0 + seven: 7 + seven])
-        if ranks_sorted == makes_seven and suits_max == 7:
+        if ranks_sorted_straight_list == makes_seven and suits_max == 6:
             return True
