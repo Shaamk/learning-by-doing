@@ -1,43 +1,31 @@
-# > Enter Player 1's cards: 10H 10C 4H 4S 10S
-# > Enter Player 2's cards: AH 3H 2H 5H 4H
-# > Player 2 wins!
-# > A Straight Flush beats A Full House!
-
-
-# user
-# shorthand strings
-# hand of cards
-# card
-# 5 cards
-
-
-# class Card
-    # rank
-    # suit
-
-
-# class PokerHand
-    # the bunch of pokerhands
-    # compare hand of players
-    # return the win
-
-
-# class Player1
-    # get cards of player1
-    # check cards to sort out the hand
-    # get from the bunch of pokerhands the ranking of the player - happens in class PokerHand
-
-
-# class Player2
-    # get cards of player2
-    # check cards to sort out the hand
-    # get from the bunch of pokerhands the ranking of the player - happens in class PokerHand
-
-
 class Card:
-    # rank, suit
-    def __init__(self, rank, suit):
-        self.rank = rank
-        self.suit = suit
-    
+    def __init__(self, card):
+        self.card = card
+        self.get_rank()
+        self.get_suit()
+        self.invalid_input()
+        self.play_poker()
 
+    def __str__(self):
+        return str(self.card)    
+    
+    def get_rank(self):
+        if not isinstance(self.card, str):
+            return "Invalid Input"
+        self.rank = self.card[:-1]
+        return self.rank
+
+    def get_suit(self):
+        if not isinstance(self.card, str):
+            return "Invalid Input"
+        self.suit = self.card[-1:]
+        return self.suit
+
+    def invalid_input(self):
+        suits_list = ["C", "D", "H", "S"]
+        ranks_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+        if not isinstance(self.card, str) or self.card == "" or self.card[:-1] in suits_list or self.card[-1:] in ranks_list or len(self.card.split()) != 5:
+            return "Invalid Input"
+        
+    def play_poker():
+        pass

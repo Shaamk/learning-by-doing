@@ -1,17 +1,20 @@
+class Pokerhand:
+    def __init__(self, pokerhands):
+        self.hands_of_poker = []
+        if pokerhands:
+            for pokerhand in pokerhands:
+                self.hands_of_poker.append(pokerhand)
 
 
-from card_class import Card
-from player1_class import player1_hand
-from player2_class import player2_hand
-
-# we need ranks and suits
-
-class PokerHand:
-    # get the hand
-    def __init__(self, player1, player2):
-        self.player1_hand = []
-        
-
-
-
-        
+pokerhands = [
+    Pokerhand("High Card", 1),
+    Pokerhand("One Pair", 2),
+    Pokerhand("Two Pair", 3),
+    Pokerhand("Three of a kind", 4),
+    Pokerhand("Straight", 5),
+    Pokerhand("Flush", 6),
+    Pokerhand("Full House", 7),
+    Pokerhand("Four of A Kind", 8),
+    Pokerhand("Straight Flush", 9),
+    Pokerhand("Royal Flush", 10),
+]
