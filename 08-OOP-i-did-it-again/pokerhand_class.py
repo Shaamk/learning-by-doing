@@ -1,9 +1,20 @@
 class Pokerhand:
-    def __init__(self, pokerhands):
-        self.hands_of_poker = []
-        if pokerhands:
-            for pokerhand in pokerhands:
-                self.hands_of_poker.append(pokerhand)
+    def __init__(self, hand, rating):
+        self.hand = hand
+        self.rating = rating
+    
+    def __str__(self):
+        return f"{self.hand}, {self.rating}"
+    
+    def __lt__(self, other):
+        return self.rating < other.rating
+
+    def __gt__(self, other):
+        return self.rating > other.rating
+
+    def __eq__(self, other):
+        return self.rating == other.rating
+    
 
 
 pokerhands = [
@@ -14,7 +25,8 @@ pokerhands = [
     Pokerhand("Straight", 5),
     Pokerhand("Flush", 6),
     Pokerhand("Full House", 7),
-    Pokerhand("Four of A Kind", 8),
+    Pokerhand("Four Of A Kind", 8),
     Pokerhand("Straight Flush", 9),
     Pokerhand("Royal Flush", 10),
 ]
+

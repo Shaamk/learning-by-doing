@@ -1,0 +1,45 @@
+> Enter Player 1's cards: 10H 10C 4H 4S 10S
+> Enter Player 2's cards: AH 3H 2H 5H 4H
+> Player 2 wins!
+> A Straight Flush beats A Full House!
+
+
+> Enter Player 1's cards: 10H 10C 4H 5S 7S
+> Enter Player 2's cards: 3S 3H 2H 5H KH
+> Player 1 wins!
+> One Pair (10) beats One Pair (3)!
+
+
+# user
+# shorthand strings
+# hand of cards
+# card
+# 5 cards
+
+
+
+
+# class Card
+    # rank
+    # suit
+    # throw error
+
+
+# class PokerHand
+    # a list of pokerhands to compare
+    # compare players hand
+    # return the win / comparison
+
+
+# class Player1 
+    # get cards of player1
+    # check cards to sort out the hand in class Poker
+
+
+# class Player2
+    # get cards of player2
+    # check cards to sort out the hand in class Poker
+    
+
+
+# rank
