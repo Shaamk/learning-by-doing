@@ -7,7 +7,9 @@ def test_card_class_exists():
 
 def test_rank_7C():
     result = Card("7C")
+    other = Card("AH")
     assert result.get_rank() == "7"
+    assert other.get_rank() == "A"
 
 def test_suit_7C():
     result = Card("7C")

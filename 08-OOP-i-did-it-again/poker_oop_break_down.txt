@@ -31,15 +31,6 @@
     # return the win / comparison
 
 
-# class Player1 
-    # get cards of player1
+# class Players
+    # get cards of player1 and player2 by instance player1 and player2
     # check cards to sort out the hand in class Poker
-
-
-# class Player2
-    # get cards of player2
-    # check cards to sort out the hand in class Poker
-    
-
-
-# rank

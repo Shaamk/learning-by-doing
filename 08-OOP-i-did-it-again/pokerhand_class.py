@@ -15,7 +15,7 @@ class Pokerhand:
     def __eq__(self, other):
         return self.rating == other.rating
     
-
+# players comparison for which is higher
 
 pokerhands = [
     Pokerhand("High Card", 1),
