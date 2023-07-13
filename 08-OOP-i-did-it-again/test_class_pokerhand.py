@@ -29,8 +29,3 @@ def test_eq_method():
     result2 = Pokerhand("Two Pair", 3)
     assert result1 == result2
 
-# def test_beats_one_hand():
-#     result1 = Pokerhand("Straight", 5)
-#     result2 = Pokerhand("Two Pair", 3)
-#     result = str(hand)
-#     assert result == "One Pair, 2"

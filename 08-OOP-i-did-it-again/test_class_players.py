@@ -1,6 +1,7 @@
 from players_class import Players
+from pokerhand_class import Pokerhand
 
-def test_player1_exists():
+def test_players_exists():
     assert Players
 
 def test_player_hand_high_card():
@@ -54,3 +55,23 @@ def test_player_hand_straight_flush():
 def test_player_hand_royal_flush():
     result = Players("10S JS QS KS AS")
     assert result.royal_flush() == "Royal Flush"
+
+def test_player_hand_unknown():
+    result = Players("10S JS QS KS AS")
+    assert result.get_hand() == Pokerhand("Royal Flush", 10)
+
+def test_player_hand_unknown_second():
+    result = Players("AC 2C 3C 4C 5C")
+    assert result.get_hand() == Pokerhand("Straight Flush", 9)
+
+def test_player_hand_unknown_third():
+    result = Players("JC JD JS JC 5H")
+    assert result.get_hand() == Pokerhand("Four Of A Kind", 8)
+
+def test_player_hand_unknown_fourth():
+    result = Players("4H 4D 4C 8S 8D")
+    assert result.get_hand() == Pokerhand("Full House", 7)
+
+def test_player_unknown_fifth():
+    result = Players('AH 6C 9H 10S JD')
+    assert result.get_hand() == Pokerhand("High Card", 1)

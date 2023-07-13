@@ -36,11 +36,15 @@ def test_invalid_input_CC():
     assert result.invalid_input() == "Invalid Input"
 
 def test_invalid_input_three_cards():
-    result = Card('2S 3S 4S')
+    result = Card("2S 3S 4S")
     assert result.invalid_input() == "Invalid Input"
+
+def test_invalid_input_in_between():
+    result = Card("AS 10S H5 7C 6S")
+    assert result.invalid_input() == "invalid Input"
     
 def test_invalid_input_six_cards():
-    result = Card('2C 4D 6H 8S 10C QD')
+    result = Card("2C 4D 6H 8S 10C QD")
     assert result.invalid_input() == "Invalid Input"
 
 

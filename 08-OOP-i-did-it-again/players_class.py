@@ -1,8 +1,6 @@
-from card_class import Card
 from pokerhand_class import Pokerhand
 
 class Players:
-
     def __init__(self, cards):
         self.cards = cards
         self.ranks_collection()
@@ -20,9 +18,27 @@ class Players:
     def straight_collection(self):
         straight_list = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
         self.collection_for_straight = [sorted(straight_list[0 + straight: 5 + straight]) for straight in range(10)]
-        
+    
     def total_ranks(self):
         return len(self.ranks_dict.values())
+    
+    def get_hand(self):    
+        hands = ((self.royal_flush, Pokerhand('Royal Flush', 10)),
+                 (self.straight_flush, Pokerhand('Straight Flush', 9)),
+                 (self.four_of_a_kind, Pokerhand('Four Of A Kind', 8)),
+                 (self.full_house, Pokerhand('Full House', 7)),
+                 (self.flush, Pokerhand('Flush', 6)),
+                 (self.straight, Pokerhand('Straight', 5)),
+                 (self.three_of_a_kind, Pokerhand('Three Of A Kind', 4)),
+                 (self.two_pair, Pokerhand('Two Pair', 3)),
+                 (self.one_pair, Pokerhand('One Pair', 2)),
+                 (self.high_card, Pokerhand('High Card', 1)))
+        
+        for hand, value in hands:
+            if hand():
+                poker_hand_value = value
+                break
+        return poker_hand_value
         
     def high_card(self):
         if self.total_ranks() == 5:
@@ -83,7 +99,3 @@ class Players:
 #     Player1("K", 12),
 #     Player1("A", 13),
 # ]
-        
-# cards = Card()
-# ranks = cards.get_rank()
-# hand = Pokerhand(pokerhands)

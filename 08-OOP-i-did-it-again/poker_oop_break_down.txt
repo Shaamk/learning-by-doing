@@ -19,18 +19,26 @@
 
 
 
+
+
+1.
 # class Card
     # rank
     # suit
     # throw error
 
 
-# class PokerHand
+2.
+# class Players
+    # get cards from "Cards"
+    # cards of player1 and player2 by instances
+    # return the hand to Pokerhand
+
+
+3.
+# class PokerHand       (player1, player2) needs hands from players
     # a list of pokerhands to compare
     # compare players hand
     # return the win / comparison
 
 
-# class Players
-    # get cards of player1 and player2 by instance player1 and player2
-    # check cards to sort out the hand in class Poker
