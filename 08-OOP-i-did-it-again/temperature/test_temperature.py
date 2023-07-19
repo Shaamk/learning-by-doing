@@ -27,39 +27,38 @@ result = avg_temp([celcius object 0, farehnheit object 32]) -> returns a celcuis
 #     result = calc_conversion(0)
 #     assert result == 32
 
-from temperature import Kelvin, Celsius
+from temperature import Celcius, Fahrenheit, Kelvin
 
+def test_create_celcius():
+    assert Celcius(72)
 
-def test_kelvin_exists() -> None:
+def test_compare_celcius():
+    assert Celcius(20) == Celcius(20)
+
+def test_compare_celcius_different():
+    assert not Celcius(20) == Celcius(30)
+
+def test_adding_celcius():
+    result = Celcius(10) + Celcius(20)
+    assert result == Celcius(30)
+
+def test_create_fahrenheit():
+    assert Fahrenheit(63)
+
+def test_compare_farhenheit():
+    assert Fahrenheit(50) == Fahrenheit(50)
+
+def test_compare_fahrenheit_with_celcius():
+    assert Fahrenheit(32) == Celcius(0)
+
+def test_compare_celcius_with_fahrenheit():
+    assert Celcius(0) == Fahrenheit(32)
+
+def test_create_kelvin():
     assert Kelvin(0)
 
-def test_comparing_kelvin() -> None:
-    assert Kelvin(3) == Kelvin(3)
+def test_compare_kelvin():
+    assert Kelvin(273) == Kelvin(273)
 
-def test_comparing_kelvin_that_do_not_match() -> None:
-    assert not Kelvin(3) == Kelvin(8)
-
-def test_adding_kelvins() -> None:
-    assert Kelvin(3) + Kelvin(4) == Kelvin(7)
-
-def test_dividing_kelvin() -> None:
-    assert Kelvin(20) // 4 == Kelvin(5)
-
-def test_celsius_exists() -> None:
-    assert Celsius(14)
-
-def test_comparing_celsius() -> None:
-    assert Celsius(25) == Celsius(25)
-
-def test_comparing_celsius_to_kelvin() -> None:
-    assert Celsius(0) == Kelvin(273)
-
-def test_comparing_kelvin_to_celsius() -> None:
-    assert Kelvin(283) == Celsius(10)
-
-def test_adding_celsius_to_kelvin() -> None:
-    assert Celsius(10) + Kelvin(283) == Kelvin(293)
-
-# def test_division_celsius_to_kelvin() -> None:
-
-# def test_average_() -> None:
+def test_compare_kelvin_to_celsius():
+    assert Kelvin(273) == Celcius(0)

@@ -30,40 +30,39 @@ Class Kelvin
 # def avg_temp(temps):
 #     return sum(temps, Celcius(0))/len(temps)
 
+class Celcius:
+    def __init__(self, temp):
+        self.temp = temp
+
+    def __eq__(self, other):
+        return self.temp == other._to_celcius().temp
+    
+    def __add__(self, other):
+        return Celcius(self.temp + other.temp)
+    
+    def _to_celcius(self):
+        return self
+    
+    def _to_kelvin(self):
+        return self.temp - 273
+    
+
+class Fahrenheit:
+    def __init__(self, temp):
+        self.temp = temp
+
+    def __eq__(self, other):
+        return self._to_celcius() == other._to_celcius()
+    
+    def _to_celcius(self):
+        celcius_value = (self.temp - 32)/1.8
+        return Celcius(celcius_value)
 
 
 class Kelvin:
-    def __init__(self, temp: int) -> None:
-        self._temp = temp
-    
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Kelvin) and not isinstance(other, Celsius):
-            raise NotImplementedError()
-        return self._temp == other.to_kelvin()._temp 
+    def __init__(self, temp):
+        self.temp = temp
 
-    def __add__(self, other: "Kelvin") -> "Kelvin":
-        return Kelvin(self._temp + other._temp)
+    def __eq__(self, other):
+        return Kelvin(self.temp == other.temp)
     
-    def __floordiv__(self, divisor: int) ->"Kelvin":
-        return Kelvin(self._temp // divisor)
-    
-    def to_kelvin(self) -> "Kelvin":
-        return self
-    
-class Celsius:
-    def __init__(self, temp: int) -> None:
-        self._temperature = temp
-
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Celsius) and not isinstance(other, Kelvin):
-            raise NotImplementedError()
-        self_in_kelvin = self.to_kelvin()
-        other_in_kelvin = other.to_kelvin()
-        return self_in_kelvin == other_in_kelvin
-        #self.to_kelvin == other.to_kelvin
-
-    def __add__(self, other: "Kelvin") -> "Kelvin":
-        return Kelvin(self.to_kelvin() + other.to_kelvin())
-    
-    def to_kelvin(self) -> Kelvin:
-        return Kelvin(self._temperature + 273)

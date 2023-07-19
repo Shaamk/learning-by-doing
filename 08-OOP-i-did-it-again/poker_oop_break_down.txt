@@ -18,27 +18,43 @@
 
 
 
-
+In which class do I make the return method with:     > player2 wins! <   ????
+And how to handle the "self" in that method ?
+How do I connect it with the main ?
 
 
 1.
-# class Card
+# class Card            (as valid input)  maybe: class Valid
+    # __str__
     # rank
     # suit
-    # throw error
+    # invalid input
 
 
 2.
-# class Players
-    # get cards from "Cards"
-    # cards of player1 and player2 by instances
-    # return the hand to Pokerhand
+# class Player          (checks what kind of hand)
+    # ranks_collection
+    # suits_collection
+    # straight_collection
+    # total_ranks
+    # get hand      (from PokerHand)
+    # high_card
+    # one_pair
+    # two_pair
+    # three_of_a_kind
+    # straight
+    # flush
+    # full_house
+    # four_of_a_kind
+    # straight_flush
+    # royal_flush
 
 
 3.
-# class PokerHand       (player1, player2) needs hands from players
-    # a list of pokerhands to compare
-    # compare players hand
-    # return the win / comparison
+# class PokerHand       (checks the better hand)
+    # __str__
+    # __lt__
+    # __gt__
+    # __eq__
 
 

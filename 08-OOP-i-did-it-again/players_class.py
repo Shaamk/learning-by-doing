@@ -1,6 +1,7 @@
 from pokerhand_class import Pokerhand
+from card_class import Card
 
-class Players:
+class Player:
     def __init__(self, cards):
         self.cards = cards
         self.ranks_collection()
