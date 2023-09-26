@@ -24,62 +24,62 @@ class Player:
         return len(self.ranks_dict.values())
     
     def get_hand(self):    
-        hands = ((self.royal_flush, Pokerhand('Royal Flush', 10)),
-                 (self.straight_flush, Pokerhand('Straight Flush', 9)),
-                 (self.four_of_a_kind, Pokerhand('Four Of A Kind', 8)),
-                 (self.full_house, Pokerhand('Full House', 7)),
-                 (self.flush, Pokerhand('Flush', 6)),
-                 (self.straight, Pokerhand('Straight', 5)),
-                 (self.three_of_a_kind, Pokerhand('Three Of A Kind', 4)),
-                 (self.two_pair, Pokerhand('Two Pair', 3)),
-                 (self.one_pair, Pokerhand('One Pair', 2)),
-                 (self.high_card, Pokerhand('High Card', 1)))
+        hands = ((self.royal_flush),
+                 (self.straight_flush),
+                 (self.four_of_a_kind),
+                 (self.full_house),
+                 (self.flush),
+                 (self.straight),
+                 (self.three_of_a_kind),
+                 (self.two_pair),
+                 (self.one_pair),
+                 (self.high_card))
         
-        for hand, value in hands:
+        for hand, (hand, rating) in enumerate(hands):
             if hand():
-                poker_hand_value = value
+                poker_hand_value = Pokerhand(hand, rating)
                 break
         return poker_hand_value
         
     def high_card(self):
         if self.total_ranks() == 5:
-            return "High Card"
+            return "High Card", 1
     
     def one_pair(self):
         if 2 in self.ranks_dict.values() and self.total_ranks() == 4:
-            return "One Pair"
+            return "One Pair", 2
 
     def two_pair(self):
         if 2 in self.ranks_dict.values() and self.total_ranks() == 3:
-            return "Two Pair"
+            return "Two Pair", 3
 
     def three_of_a_kind(self):
         if 3 in self.ranks_dict.values() and self.total_ranks() == 3:
-            return "Three Of A Kind"
+            return "Three Of A Kind", 4
 
     def straight(self):
         if sorted(self.ranks_list) in self.collection_for_straight:
-            return "Straight"
+            return "Straight", 5
 
     def flush(self):
         if 5 in self.suits_dict.values():
-            return "Flush"
+            return "Flush", 6
 
     def full_house(self):
         if 3 in self.ranks_dict.values() and 2 in self.ranks_dict.values():
-            return "Full House"
+            return "Full House", 7
 
     def four_of_a_kind(self):
         if 4 in self.ranks_dict.values() and 1 in self.ranks_dict.values():
-            return "Four Of A Kind"
+            return "Four Of A Kind", 8
         
     def straight_flush(self):
         if sorted(self.ranks_list) in self.collection_for_straight and 5 in self.suits_dict.values():
-            return "Straight Flush"
+            return "Straight Flush", 9
 
     def royal_flush(self):
         if sorted(self.ranks_list) == sorted(["10", "J", "Q", "K", "A"]) and 5 in self.suits_dict.values():
-            return "Royal Flush"
+            return "Royal Flush", 10
 
 
 

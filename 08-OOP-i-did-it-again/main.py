@@ -17,9 +17,9 @@ def main():
     print(type(p1))
     print(p1)
     if p1 > p2:
-        print(f"Player 1 wins!\n{p1.hand} is better than {p2.hand}")
+        print(f"Player 1 wins!\nA {p1.hand} beats A {p2.hand}!")
     else:
-        print(f"Player 2 wins!\n{p2.hand} is better than {p1.hand}")
+        print(f"Player 2 wins!\nA {p2.hand} beats A {p1.hand}!")
 
 
 
